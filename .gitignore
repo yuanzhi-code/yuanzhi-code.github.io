@@ -1,0 +1,43 @@
+# Jekyll 生成的文件
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby 相关
+.bundle/
+vendor/
+*.gem
+*.rbc
+Gemfile.lock
+
+# 操作系统生成的文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 编辑器相关
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 依赖目录
+node_modules/
+dist/ 
