@@ -12,6 +12,7 @@ vendor/
 Gemfile.lock
 
 # 操作系统生成的文件
+# macOS
 .DS_Store
 .DS_Store?
 ._*
@@ -19,6 +20,22 @@ Gemfile.lock
 .Trashes
 ehthumbs.db
 Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 # 编辑器相关
 .idea/
