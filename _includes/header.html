@@ -1,65 +1,175 @@
-{% assign date_format = site.date_format | default: "%B %-d, %Y" %}
-
-{% if page.cover-img %}
-  <div id="header-big-imgs" data-num-img={% if page.cover-img.first %}{{ page.cover-img.size }}{% else %}1{% endif %}
-    {% for bigimg in page.cover-img %}
-    {% assign imgnum = forloop.index %}
-    {% for imginfo in bigimg %}
-    {% if imginfo[0] %}
-      data-img-src-{{ imgnum }}="{{ imginfo[0] | absolute_url }}"
-      data-img-desc-{{ imgnum }}="{{ imginfo[1] }}"
-    {% else %}
-      data-img-src-{{ imgnum }}="{{ imginfo | absolute_url }}"
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-  ></div>
-{% endif %}
-
-<header class="header-section {% if page.cover-img %}has-img{% endif %}">
-<div class="intro-header {% if page.cover-img %} big-img {% endif %}">
-  {% if page.cover-img or page.title %}
-  <div class="container-md">
-    <div class="row">
-      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-        <div class="{{ include.type }}-heading">
-          <h1>{% if page.title %}{{ page.title | strip_html }}{% else %}<br/>{% endif %}</h1>
-          {% if page.subtitle %}
-            {% if include.type == "page" %}
-              <hr class="small">
-              <span class="{{ include.type }}-subheading">{{ page.subtitle | strip_html }}</span>
-            {% else %}
-              <h2 class="{{ include.type }}-subheading">{{ page.subtitle | strip_html }}</h2>
-            {% endif %}
-          {% endif %}
-          
-          {% if include.type == "post" %} 
-            {% if page.author %}
-              By <strong>{{ page.author | strip_html }}</strong><br>
-            {% endif%}
-            <span class="post-meta">Posted on {{ page.date | date: date_format }}</span>
-            {% if page.last-updated %}
-              <span class="post-meta">
-                <span class="d-none d-md-inline middot">&middot;</span>
-                Last updated {{ page.last-updated | date: date_format }}
-              </span>
-            {% endif %}
-            {% if page.readtime %}
-              {% include readtime.html %}
-            {% endif %}
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="{{ site.title }}" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#fff" />
+  <meta name="apple-mobile-web-app-title" content="{{ site.title }}" />
+  <title>
+    {% if page.title %}{{ page.title | escape }} - {{ site.title }}{% else %}{{
+    site.title | escape }}{% endif %}
+  </title>
+  <link
+    rel="alternate"
+    href="{{
+      page.url | remove: 'index.html' | remove: '.html' | absolute_url
+    }}"
+    hreflang="{{ site.lang }}"
+  />
+  <link
+    rel="canonical"
+    href="{{
+      page.url  | remove: 'index.html' | remove: '.html' | absolute_url
+    }}"
+  />
+  {% if paginator.previous_page %}
+  <link
+    rel="prev"
+    href="{{
+      paginator.previous_page_path
+        | remove: 'index.html'
+        | remove: '.html'
+    }}"
+  />
+  {% endif %} {% if paginator.next_page %}
+  <link
+    rel="next"
+    href="{{
+      paginator.next_page_path
+        | remove: 'index.html'
+        | remove: '.html'
+    }}"
+  />
   {% endif %}
-  {% if page.cover-img %}<span class='img-desc'></span>{% endif %}
-</div>
+  <meta
+    name="description"
+    content="{{
+      page.description
+        | default: site.description
+        | strip_html
+        | normalize_whitespace
+        | truncate: 200
+        | escape
+    }}"
+  />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+  <meta property="fb:app_id" content="{{ site.fb_appid }}" />
+  <meta
+    property="og:site_name"
+    content="{% if page.title %}{{ page.title | escape }} | {{
+      site.author.name
+    }}{% else %}{{ site.title | escape }}{% endif %}"
+  />
+  <meta
+    property="og:title"
+    content="{% if page.title %}{{ page.title | escape }} | {{
+      site.author.name
+    }}{% else %}{{ site.title | escape }}{% endif %}"
+  />
+  {% if page.location %}
+  <meta property="og:type" content="article" />
+  <meta
+    property="article:publisher"
+    content="https://web.facebook.com/{{ site.author.facebook }}"
+  />
+  {% else %}
+  <meta property="og:type" content="website" />
+  {% endif %}
+  <meta
+    property="og:url"
+    content="{{
+      page.url | remove: 'index.html' | remove: '.html' | absolute_url
+    }}"
+  />
+  <meta
+    property="og:description"
+    content="{{
+      page.description
+        | default: site.description
+        | strip_html
+        | normalize_whitespace
+        | truncate: 200
+        | escape
+    }}"
+  />
+  {% if page.image %}
+  <meta property="og:image" content="{{ page.image | absolute_url }}" />
+  {% else %}
+  <meta property="og:image" content="{{ site.image | absolute_url }}" />
+  {% endif %}
+  <meta property="og:image:width" content="640" />
+  <meta property="og:image:height" content="640" />
+  <meta name="twitter:card" content="summary" />
+  <meta
+    name="twitter:title"
+    content="{% if page.title %}{{ page.title | escape }} | {{
+      site.author.twitter
+    }}{% else %}{{ site.title | escape }}{% endif %}"
+  />
+  <meta
+    name="twitter:url"
+    content="{{
+      page.url  | remove: 'index.html' | remove: '.html' | absolute_url
+    }}"
+  />
+  <meta name="twitter:site" content="@{{ site.author.twitter }}" />
+  <meta name="twitter:creator" content="@{{ site.author.twitter }}" />
+  <meta
+    name="twitter:description"
+    content="{{
+      page.description
+        | default: site.description
+        | strip_html
+        | normalize_whitespace
+        | truncate: 200
+        | escape
+    }}"
+  />
+  {% if page.image %}
+  <meta name="twitter:image" content="{{ page.image | absolute_url }}" />
+  {% else %}
+  <meta name="twitter:image" content="{{ site.image | absolute_url }}" />
+  {% endif %} {% feed_meta %}
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/assets/favicons/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/assets/favicons/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/assets/favicons/favicon-16x16.png"
+  />
+  <link rel="manifest" href="/assets/favicons/site.webmanifest" />
+  <link
+    rel="mask-icon"
+    href="/assets/favicons/safari-pinned-tab.svg"
+    color="#5bbad5"
+  />
+  <meta name="apple-mobile-web-app-title" content="Jekyll Klise" />
+  <meta name="application-name" content="Jekyll Klise" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#2c2c2c" />
 
-{% if page.header-extra %}
-  {% for file in page.header-extra %}
-    {% include {{ file }} %}
-  {% endfor %}
-{% endif %}
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
-</header>
+  <!-- for mathjax support -->
+  {% if page.usemathjax %}
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  {% endif %}
+    
+</head>
