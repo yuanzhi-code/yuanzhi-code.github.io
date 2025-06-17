@@ -1,6 +1,11 @@
 ---
 layout: post
-title: 怎么高效获取信息？
+title: 院止的测试文档
+date: 2025-06-14 12:00:00 +0800
+publisher: 院止
+excerpt: 芜哈哈哈哈
+description: 在信息爆炸的时代，如何快速准确地获取所需信息？本文将分享一些实用的搜索技巧和工具，帮助你提高信息获取效率。
+comments: true
 ---
 
 开篇引用[sinan](https://www.sinansnotes.com/)写的一段话。
