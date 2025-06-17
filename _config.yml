@@ -1,28 +1,27 @@
 # Site settings
-title: Klise Theme # site title
+title: 记忆熔炉 # site title
 description: >- # site description
-  He's writing in Bahasa about web technology and experience as a journal 
-  for documentation things that he learned, meet him <a href="https://github.com/piharpi" target="_blank" rel="noopener">@github</a>.
-lang: en-US # default lang
-timezone: Asia/Jakarta # set your timezone
+  一个关于技术、思考与洞察的未来手记，在知识的熔炉中提炼智慧。
+lang: zh-CN # default lang
+timezone: Asia/Shanghai # set your timezone
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
-repo: https://github.com/piharpi/jekyll-klise # site repo [optional]
-mode: light # default theme "dark" | "light"
+repo: https://github.com/yuanzhi-code # site repo [optional]
+mode: dark # default theme "dark" | "light"
 
 # Profile settings
 author:
   name: Yuan Zhi # author name
   bio: >- # tell to the world
     施工中
-  username: username # general username
-  github: github_username # github username
+  username: yuanzhi # general username
+  github: yuanzhi-code # github username
   twitter: twitter_username # twitter username
   facebook: facebook_username # facebook username
-  email: your-email@email.com # email adress
+  email: yuanzhi5621@gmail.com # email adress
   avatar: /assets/img/avatar.jpeg # change with your own avatar
 
 # URL settings
-url: "https://klise.now.sh" #
+url: "https://yuanzhi-code.github.io" #
 baseurl:
 permalink: /:title/
 google_analytics: # leave it blank if not wish
