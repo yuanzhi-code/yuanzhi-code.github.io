@@ -249,17 +249,61 @@
     margin: 0;
     border: 0;
     padding: 0;
-    font-size: $base-font-size;
-    font-weight: normal;
-    letter-spacing: 0.1px;
 
     a {
-      color: $text-base-color;
+      border: 0;
+      color: $black;
 
-      &:hover,
-      &focus {
-        color: $black;
+      &:hover {
+        color: $text-link-blue-active;
       }
+    }
+  }
+}
+
+// Archive post item styles
+.archive-post-item {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  @extend %clearfix;
+
+  &:not(:first-child) {
+    border-top: 1px solid $light;
+  }
+
+  .archive-post-item-title {
+    margin: 0 0 5px 0;
+    border: 0;
+    padding: 0;
+
+    a {
+      border: 0;
+      color: $black;
+
+      &:hover {
+        color: $text-link-blue-active;
+      }
+    }
+  }
+
+  .archive-post-item-excerpt {
+    margin-top: -3px;
+    margin-bottom: 5px;
+    font-size: $small-font-size;
+    line-height: 1.5;
+    color: $gray;
+  }
+
+  .archive-post-item-date {
+    min-width: 96px;
+    color: $gray;
+    font-weight: $normal-weight;
+    padding-right: 10px;
+
+    @include media-query($on-mobile) {
+      font-size: 16px;
     }
   }
 }
