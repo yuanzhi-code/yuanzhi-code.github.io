@@ -248,6 +248,9 @@ body[data-theme="dark"] {
 
   // Archive Post Item
   .archive-post-item {
+    &:not(:first-child) {
+      border-color: $dark-light;
+    }
     .archive-post-item-title {
       a {
         color: $dark-white;
